@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PacMan : MonoBehaviour
 {
-    public float speed = 50.0f;
+    private float speed = 3.0f;
 
     Rigidbody2D rigidbody2d;
     private Vector2 direction = Vector2.zero;
@@ -25,6 +25,7 @@ public class PacMan : MonoBehaviour
 
     void CheckInput()
     {
+        // Change the direction based on input
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             direction = Vector2.left;

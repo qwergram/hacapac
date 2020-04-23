@@ -116,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c464eb9ec9e5b4a4fa18f07038412c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!50 &1707710521892831442
 Rigidbody2D:
   serializedVersion: 4
@@ -162,5 +161,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.98, y: 1.98}
+  m_Size: {x: 1.7, y: 1.7}
   m_EdgeRadius: 0
