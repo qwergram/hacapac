@@ -5,12 +5,19 @@ using UnityEngine;
 public class PacMan : MonoBehaviour
 {
     public float moveSpeed = 4.0f;
+    public float timeInvincible = 10.0f;
+
     public Transform movePoint;
     public LayerMask whatStopsMovement;
 
+    // Newly input direction
     private Vector2 newDirection = Vector2.zero;
     // Previous direction
     private Vector2 oldDirection = Vector2.zero;
+
+    private int score = 0;
+    private bool isInvincible = false;
+    private float invincibleTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +28,21 @@ public class PacMan : MonoBehaviour
     // Update is called every frame
     void Update()
     {
+        UpdateTimers();
         CheckInput();
         Move();
+    }
+
+    void UpdateTimers()
+    {
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+            {
+                isInvincible = false;
+            }
+        }
     }
 
     void CheckInput()
@@ -51,7 +71,7 @@ public class PacMan : MonoBehaviour
             // If no collision between movePoint and grid, move the movePoint to the new location
             if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)newDirection, 0.2f, whatStopsMovement))
             {
-                UpdateOrientation(newDirection);
+                UpdateOrientation();
                 oldDirection = newDirection;
                 movePoint.position += (Vector3)newDirection;
             } 
@@ -63,27 +83,38 @@ public class PacMan : MonoBehaviour
         }
     }
 
-    void UpdateOrientation(Vector2 direction)
+    void UpdateOrientation()
     {
-        if (direction == Vector2.left)
+        if (newDirection == Vector2.left)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (direction == Vector2.right)
+        else if (newDirection == Vector2.right)
         {
             transform.localScale = new Vector3(1, 1, 1);
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (direction == Vector2.up)
+        else if (newDirection == Vector2.up)
         {
             transform.localScale = new Vector3(1, 1, 1);
             transform.localRotation = Quaternion.Euler(0, 0, 90);
         }
-        else if (direction == Vector2.down)
+        else if (newDirection == Vector2.down)
         {
             transform.localScale = new Vector3(1, 1, 1);
             transform.localRotation = Quaternion.Euler(0, 0, 270);
         }
+    }
+
+    public void IncreaseScore(int scoreIncrease)
+    {
+        score += scoreIncrease;
+    }
+
+    public void TriggerInvincibility()
+    {
+        isInvincible = true;
+        invincibleTimer = timeInvincible;
     }
 }
