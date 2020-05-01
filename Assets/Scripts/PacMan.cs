@@ -15,6 +15,7 @@ public class PacMan : MonoBehaviour
     // Previous direction
     private Vector2 oldDirection = Vector2.zero;
 
+    private int pelletsConsumed = 0;
     private int score = 0;
     private bool isInvincible = false;
     private float invincibleTimer;
@@ -107,14 +108,14 @@ public class PacMan : MonoBehaviour
         }
     }
 
-    public void IncreaseScore(int scoreIncrease)
+    public void ConsumePellet(string pellet)
     {
-        score += scoreIncrease;
-    }
-
-    public void TriggerInvincibility()
-    {
-        isInvincible = true;
-        invincibleTimer = timeInvincible;
+        pelletsConsumed++;
+        score += 100;
+        if (pellet.Equals("SuperPellet"))
+        {
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+        }
     }
 }
