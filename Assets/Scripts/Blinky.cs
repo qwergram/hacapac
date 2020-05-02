@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Blinky : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
+        PacMan pacman = other.GetComponent<PacMan>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (pacman != null)
+        {
+            if (pacman.isInvincible)
+            {
+                // TODO:
+                pacman.IncreaseScore(300);
+                Destroy(gameObject);
+            }
+            else
+            {
+                pacman.Hit();
+            }
+        }
     }
 }
