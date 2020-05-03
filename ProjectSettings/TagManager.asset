@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid
+  - Blinky
+  - Inky
+  - Pinky
+  - PacMan
   layers:
   - Default
   - TransparentFX

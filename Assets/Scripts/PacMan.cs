@@ -5,7 +5,7 @@ using UnityEngine;
 public class PacMan : MonoBehaviour
 {
     // User configurable
-    public float moveSpeed = 4.0f;
+    public float moveSpeed = 6.0f;
     public float timeInvincible = 10.0f;
 
     // Movement related
@@ -17,6 +17,8 @@ public class PacMan : MonoBehaviour
     // Attribute related
     private int pelletsConsumed = 0;
     private int score = 0;
+
+    // Frightened mode related
     public bool isInvincible { get { return _isInvincible; } }
     private bool _isInvincible = false;
     private float invincibleTimer;
@@ -24,7 +26,7 @@ public class PacMan : MonoBehaviour
     // Audio related
     public AudioClip chomp1;
     public AudioClip chomp2;
-    private AudioSource audio;
+    private new AudioSource audio;
     private bool chomp1Played = false;
 
     // Start is called before the first frame update
@@ -37,22 +39,23 @@ public class PacMan : MonoBehaviour
     // Update is called every frame
     void Update()
     {
-        UpdateTimers();
+        //UpdateTimers();
         CheckInput();
         Move();
     }
 
-    void UpdateTimers()
-    {
-        if (_isInvincible)
-        {
-            invincibleTimer -= Time.deltaTime;
-            if (invincibleTimer < 0)
-            {
-                _isInvincible = false;
-            }
-        }
-    }
+    //void UpdateTimers()
+    //{
+    //    if (_isInvincible)
+    //    {
+    //        invincibleTimer -= Time.deltaTime;
+    //        if (invincibleTimer < 0)
+    //        {
+    //            _isInvincible = false;
+    //            StopFrightenedMode();
+    //        }
+    //    }
+    //}
 
     // Movement related
     private void CheckInput()
@@ -124,9 +127,46 @@ public class PacMan : MonoBehaviour
         {
             _isInvincible = true;
             invincibleTimer = timeInvincible;
+            StartFrightenedMode();
         }
         PlayChompSound();
     }
+    private void StartFrightenedMode()
+    {
+        GameObject[] blinkys = GameObject.FindGameObjectsWithTag("Blinky");
+        foreach (GameObject blinky in blinkys)
+        {
+            blinky.GetComponent<Blinky>().StartFrightenedMode();
+        }
+        GameObject[] inkys = GameObject.FindGameObjectsWithTag("Inky");
+        foreach (GameObject inky in inkys)
+        {
+            inky.GetComponent<Inky>().StartFrightenedMode();
+        }
+        GameObject[] pinkys = GameObject.FindGameObjectsWithTag("Pinky");
+        foreach (GameObject pinky in pinkys)
+        {
+            pinky.GetComponent<Pinky>().StartFrightenedMode();
+        }
+    }
+    //private void StopFrightenedMode()
+    //{
+    //    GameObject[] blinkys = GameObject.FindGameObjectsWithTag("Blinky");
+    //    foreach (GameObject blinky in blinkys)
+    //    {
+    //        blinky.GetComponent<Blinky>().StopFrightenedMode();
+    //    }
+    //    GameObject[] inkys = GameObject.FindGameObjectsWithTag("Inky");
+    //    foreach (GameObject inky in inkys)
+    //    {
+    //        inky.GetComponent<Inky>().StopFrightenedMode();
+    //    }
+    //    GameObject[] pinkys = GameObject.FindGameObjectsWithTag("Pinky");
+    //    foreach (GameObject pinky in pinkys)
+    //    {
+    //        pinky.GetComponent<Pinky>().StopFrightenedMode();
+    //    }
+    //}
     public void Hit()
     {
         // TODO:

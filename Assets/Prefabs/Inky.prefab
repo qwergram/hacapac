@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 116343266094142986}
   m_Layer: 0
   m_Name: Inky Sprite
-  m_TagString: Untagged
+  m_TagString: Inky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

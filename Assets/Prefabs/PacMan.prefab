@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1106993227881918629}
   m_Layer: 0
   m_Name: PacMan Sprite
-  m_TagString: Untagged
+  m_TagString: PacMan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

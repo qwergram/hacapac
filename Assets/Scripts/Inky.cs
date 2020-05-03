@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Inky : MonoBehaviour
 {
+    // User configurable
     public float moveSpeed = 2.0f;
+    public float timeFrightened = 10.0f;
+
+    // Movement related
     public Transform movePoint;
     public LayerMask whatStopsMovement;
-
     private Vector2 direction = Vector2.up;
+
+    // Animation related
     private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,5 +66,15 @@ public class Inky : MonoBehaviour
                 pacman.Hit();
             }
         }
+    }
+
+    public void StartFrightenedMode()
+    {
+        anim.SetBool("Frightened", true);
+    }
+
+    public void StopFrightenedMode()
+    {
+        anim.SetBool("Frightened", false);
     }
 }
