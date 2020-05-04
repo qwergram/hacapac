@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid
+  - Blinky
+  - Inky
+  - Pinky
+  - PacMan
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - 
   - Grid
-  - 
+  - Characters
   - 
   - 
   - 
@@ -41,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Pellets
+    uniqueID: 3824554933
+    locked: 0
+  - name: Characters
+    uniqueID: 253713123
     locked: 0
