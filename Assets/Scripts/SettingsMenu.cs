@@ -8,14 +8,14 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
 
     private float _volume;
-    public float Volume {
+    public float volume {
         get { return _volume; }
         private set { _volume = value; }
     }
 
     public void SetVolume (float volume)
     {
-        Volume = volume;
+        this.volume = volume;
         audioMixer.SetFloat("MasterVolume", volume);
     }
 }

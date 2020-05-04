@@ -29,11 +29,14 @@ public class PacMan : MonoBehaviour
     private new AudioSource audio;
     private bool chomp1Played = false;
 
+    private InputManager inputManager;
+
     // Start is called before the first frame update
     void Start()
     {
         movePoint.parent = null;
         audio = transform.GetComponent<AudioSource>();
+        inputManager = InputManager.instance;
     }
 
     // Update is called every frame
@@ -61,16 +64,16 @@ public class PacMan : MonoBehaviour
     private void CheckInput()
     {
         // Change the direction based on input
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (inputManager.GetKeyDown(BindableActions.Left))
         {
             newDirection = Vector2.left;
-        } else if (Input.GetKeyDown(KeyCode.RightArrow))
+        } else if (inputManager.GetKeyDown(BindableActions.Right))
         {
             newDirection = Vector2.right;
-        } else if (Input.GetKeyDown(KeyCode.UpArrow))
+        } else if (inputManager.GetKeyDown(BindableActions.Up))
         {
             newDirection = Vector2.up;
-        } else if (Input.GetKeyDown(KeyCode.DownArrow))
+        } else if (inputManager.GetKeyDown(BindableActions.Down))
         {
             newDirection = Vector2.down;
         }
