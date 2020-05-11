@@ -150,11 +150,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 67538ee9a7149814c9d13042d1c2604e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6d5533360e9fd854881dfce779886c18, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -262,6 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43617240bc192743939030bc7541779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusic_Intro: {fileID: 8300000, guid: 6d5533360e9fd854881dfce779886c18,
+    type: 3}
   backgroundMusic_Normal: {fileID: 8300000, guid: 67538ee9a7149814c9d13042d1c2604e,
     type: 3}
   backgroundMusic_Frightened: {fileID: 8300000, guid: ab60c9401e0f9f7459e5467a8e984d95,
@@ -7938,6 +7940,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3367186709599256704, guid: 79e678c17ad5f40499d02e3334830207,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367186709599256704, guid: 79e678c17ad5f40499d02e3334830207,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3367186709599256705, guid: 79e678c17ad5f40499d02e3334830207,
         type: 3}
       propertyPath: m_SortingLayerID
