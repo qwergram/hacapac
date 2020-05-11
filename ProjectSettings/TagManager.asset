@@ -9,6 +9,7 @@ TagManager:
   - Inky
   - Pinky
   - PacMan
+  - Game
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class GameSetup : MonoBehaviour
 {
-    // TODO: CHANGE LATER
+    public AudioClip backgroundMusic_Normal;
+    public AudioClip backgroundMusic_Frightened;
+    public AudioClip backgroundMusic_PacManDeath;
+    public AudioSource backgroundMusic;
+
     // Start is called before the first frame update
     void Start()
+    {
+        ConfigureMusic();
+        ConfigurePacMan();
+        ConfigureGhosts();
+    }
+    void ConfigureMusic()
+    {
+        backgroundMusic.volume = 1.0f;
+    }
+
+    void ConfigurePacMan()
     {
         PacMan pacman = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacMan>();
         pacman.moveSpeed = 6.0f;
         pacman.timeInvincible = 10.0f;
+        pacman.audio.volume = 1.0f;
+    }
+
+    void ConfigureGhosts()
+    {
         GameObject[] inkyGameObjects = GameObject.FindGameObjectsWithTag("Inky");
         foreach (GameObject inkyGameObject in inkyGameObjects)
         {
@@ -25,5 +45,22 @@ public class GameSetup : MonoBehaviour
             pinky.moveSpeed = 2.0f;
             pinky.timeFrightened = 10.0f;
         }
+    }
+
+    public void ChangeBGMusic(string music)
+    {
+        if (music.Equals("Frightened"))
+        {
+            backgroundMusic.clip = backgroundMusic_Frightened;
+        }
+        else if (music.Equals("PacManDeath"))
+        {
+            backgroundMusic.clip = backgroundMusic_PacManDeath;
+        }
+        else
+        {
+            backgroundMusic.clip = backgroundMusic_Normal;
+        }
+        backgroundMusic.Play();
     }
 }

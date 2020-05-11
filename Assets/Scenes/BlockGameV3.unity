@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 636165609}
   m_Layer: 0
   m_Name: Game
-  m_TagString: Untagged
+  m_TagString: Game
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,6 +262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43617240bc192743939030bc7541779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusic_Normal: {fileID: 8300000, guid: 67538ee9a7149814c9d13042d1c2604e,
+    type: 3}
+  backgroundMusic_Frightened: {fileID: 8300000, guid: ab60c9401e0f9f7459e5467a8e984d95,
+    type: 3}
+  backgroundMusic_PacManDeath: {fileID: 8300000, guid: 634513d1cf0a3674ab7bf775dd1457c4,
+    type: 3}
+  backgroundMusic: {fileID: 636165606}
 --- !u!114 &636165609
 MonoBehaviour:
   m_ObjectHideFlags: 0

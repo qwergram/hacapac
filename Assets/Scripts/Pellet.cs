@@ -10,7 +10,7 @@ public class Pellet : MonoBehaviour
 
         if (pacman != null)
         {
-            pacman.ConsumePellet("Pellet");
+            pacman.ConsumePellet(false);
             Destroy(gameObject);
         }
     }

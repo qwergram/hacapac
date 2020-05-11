@@ -10,7 +10,7 @@ public class SuperPellet : MonoBehaviour
 
         if (pacman != null)
         {
-            pacman.ConsumePellet("SuperPellet");
+            pacman.ConsumePellet(true);
             Destroy(gameObject);
         }
     }

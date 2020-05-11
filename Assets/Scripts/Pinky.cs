@@ -11,6 +11,7 @@ public class Pinky : MonoBehaviour
     // Movement related
     public Transform movePoint;
     public LayerMask whatStopsMovement;
+    public bool canMove = true;
     private Vector2 direction = Vector2.right;
 
     // Frightened mode related
@@ -25,9 +26,6 @@ public class Pinky : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: cha
-        frightenedTimer = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacMan>().timeInvincible;
-
         movePoint.parent = null;
         anim = GetComponent<Animator>();
     }
@@ -80,21 +78,24 @@ public class Pinky : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, movePoint.position) <= 0.05f)
+        if (canMove)
         {
-            // If no collision between movePoint and grid, move the movePoint to the new location
-            if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction, 0.2f, whatStopsMovement))
+            transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, movePoint.position) <= 0.05f)
             {
-                movePoint.position += (Vector3)direction;
+                // If no collision between movePoint and grid, move the movePoint to the new location
+                if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction, 0.2f, whatStopsMovement))
+                {
+                    movePoint.position += (Vector3)direction;
+                }
+                // Else if no collision if turn around, then turn around
+                else if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction * -1, 0.2f, whatStopsMovement))
+                {
+                    direction *= -1;
+                    movePoint.position += (Vector3)direction;
+                }
+                anim.SetBool("Left", direction.Equals(Vector2.left));
             }
-            // Else if no collision if turn around, then turn around
-            else if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction * -1, 0.2f, whatStopsMovement))
-            {
-                direction *= -1;
-                movePoint.position += (Vector3)direction;
-            }
-            anim.SetBool("Left", direction.Equals(Vector2.left));
         }
     }
 
@@ -107,12 +108,12 @@ public class Pinky : MonoBehaviour
             if (isFrightened)
             {
                 // TODO:
-                pacman.IncreaseScore(300);
+                pacman.score += 300;
                 Destroy(gameObject);
             }
             else
             {
-                pacman.Hit();
+                pacman.StartDeath();
             }
         }
     }
