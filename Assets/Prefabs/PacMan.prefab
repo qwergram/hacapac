@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 253713123
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0cce9f83a7e98f84e84eb2eda23a90ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   timeInvincible: 10
-  audio: {fileID: 0}
+  audio: {fileID: 1106993227881918629}
   movePoint: {fileID: 8673931015861500220}
   whatStopsMovement:
     serializedVersion: 2

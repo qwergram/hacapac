@@ -44,6 +44,7 @@ public class PacMan : MonoBehaviour
     void Start()
     {
         game = GameObject.FindGameObjectWithTag("Game").GetComponent<GameSetup>();
+        startingPosition = transform.position;
         inputManager = InputManager.instance;
         movePoint.parent = null;
         anim = GetComponent<Animator>();

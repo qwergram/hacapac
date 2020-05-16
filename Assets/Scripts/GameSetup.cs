@@ -1,9 +1,19 @@
-﻿using System.Collections;
+﻿using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameSetup : MonoBehaviour
 {
+    // Prefabs
+    public GameObject blockGO;
+    public GameObject pacmanGO;
+    public GameObject blinkyGO;
+    public GameObject inkyGO;
+    public GameObject pinkyGO;
+    public GameObject pelletGO;
+    public GameObject superpelletGO;
+
     public AudioClip backgroundMusic_Intro;
     public AudioClip backgroundMusic_Normal;
     public AudioClip backgroundMusic_Frightened;
@@ -13,12 +23,12 @@ public class GameSetup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BuildLevel();
         ConfigureMusic();
         ConfigurePacMan();
         ConfigureGhosts();
         StartIntro();
     }
-
     void StartIntro()
     {
         // Hide all Game Objects and play intro
@@ -97,6 +107,47 @@ public class GameSetup : MonoBehaviour
         backgroundMusic.loop = true;
     }
 
+    void BuildLevel()
+    {
+        string[] lines = File.ReadAllLines("Assets/Levels/TestLevel.txt");
+
+        for(int y = 0; y < lines.Length; y++)
+        {
+            char[] line = lines[y].ToCharArray();
+            for(int x = 0; x < line.Length; x++)
+            {
+                Vector3 position = new Vector3(x + 0.5f, lines.Length - 1 - y - 0.5f);
+                switch (line[x])
+                {
+                    case '#':
+                        position = new Vector3(x, lines.Length - 1 - y);
+                        Instantiate(blockGO, position, Quaternion.identity);
+                        break;
+                    case '@':
+                        Instantiate(pacmanGO, position, Quaternion.identity);
+                        break;
+                    case 'B':
+                        Instantiate(blinkyGO, position, Quaternion.identity);
+                        break;
+                    case 'I':
+                        Instantiate(inkyGO, position, Quaternion.identity);
+                        break;
+                    case 'P':
+                        Instantiate(pinkyGO, position, Quaternion.identity);
+                        break;
+                    case 'o':
+                        Instantiate(pelletGO, position, Quaternion.identity);
+                        break;
+                    case 'O':
+                        Instantiate(superpelletGO, position, Quaternion.identity);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
     void ConfigureMusic()
     {
         backgroundMusic.volume = 1.0f;
@@ -104,10 +155,14 @@ public class GameSetup : MonoBehaviour
 
     void ConfigurePacMan()
     {
-        PacMan pacman = GameObject.FindGameObjectWithTag("PacMan").GetComponent<PacMan>();
-        pacman.moveSpeed = 6.0f;
-        pacman.timeInvincible = 10.0f;
-        pacman.audio.volume = 1.0f;
+        GameObject pacmanGameObject = GameObject.FindGameObjectWithTag("PacMan");
+        if(pacmanGameObject != null)
+        {
+            PacMan pacman = pacmanGameObject.GetComponent<PacMan>();
+            pacman.moveSpeed = 6.0f;
+            pacman.timeInvincible = 10.0f;
+            pacman.audio.volume = 1.0f;
+        }
     }
 
     void ConfigureGhosts()
