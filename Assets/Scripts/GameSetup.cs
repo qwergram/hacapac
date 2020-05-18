@@ -36,12 +36,12 @@ public class GameSetup : MonoBehaviour
 
     void BuildLevel()
     {
-        string[] lines = File.ReadAllLines("Assets/Levels/TestLevel.txt");
+        string[] lines = File.ReadAllLines(Application.streamingAssetsPath + "/TestLevel.txt");
 
-        for(int y = 0; y < lines.Length; y++)
+        for (int y = 0; y < lines.Length; y++)
         {
             char[] line = lines[y].ToCharArray();
-            for(int x = 0; x < line.Length; x++)
+            for (int x = 0; x < line.Length; x++)
             {
                 Vector3 position = new Vector3(x + 0.5f, lines.Length - 1 - y - 0.5f);
                 switch (line[x])
