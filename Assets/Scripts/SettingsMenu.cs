@@ -54,11 +54,6 @@ public class SettingsMenu : MonoBehaviour
         set { Settings.musicVolume = value; }
     }
 
-    public float volume {
-        get { return Settings.masterVolume; }
-        set { Settings.masterVolume = value; }
-    }
-
     public void SetDefaultVolume ()
     {
         masterVolumeSlider.value = Settings.masterVolume;
