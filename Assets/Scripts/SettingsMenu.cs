@@ -43,7 +43,6 @@ public class SettingsMenu : MonoBehaviour
         get { return Settings.masterVolume; }
         set { Settings.masterVolume = value; }
     }
-    
 
     public void SetDefaultVolume ()
     {

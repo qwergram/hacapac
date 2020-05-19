@@ -10,14 +10,4 @@ public static class Settings
     public static float pacmanMoveSpeed = 6.0f;
     public static float ghostMoveSpeed = 2.0f;
     public static float ghostTimeFrightened = 10.0f;
-    // {
-    //     get 
-    //     {
-    //         return musicVolume_;
-    //     }
-    //     set 
-    //     {
-    //         musicVolume_ = value;
-    //     }
-    // }
 }
