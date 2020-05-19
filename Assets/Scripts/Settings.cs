@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Settings
 {
-    public static float musicVolume = 1.0f;
+    public static float musicVolume = 7.0f;
     public static float soundFXVolume = 1.0f;
     public static float masterVolume = 1.0f;
     public static float pacmanMoveSpeed = 6.0f;
