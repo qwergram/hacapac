@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 253713123
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0cce9f83a7e98f84e84eb2eda23a90ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -119,10 +119,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   timeInvincible: 10
+  audio: {fileID: 1106993227881918629}
   movePoint: {fileID: 8673931015861500220}
   whatStopsMovement:
     serializedVersion: 2
     m_Bits: 256
+  canMove: 1
+  score: 0
   chomp1: {fileID: 8300000, guid: 927c1ff75522941468590bfc00c701de, type: 3}
   chomp2: {fileID: 8300000, guid: 9a71ac615f460824ebad39e5bd113710, type: 3}
 --- !u!50 &538583527810198520
@@ -170,7 +173,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.95, y: 1.95}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!82 &1106993227881918629
 AudioSource:

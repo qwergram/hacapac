@@ -11,7 +11,14 @@ public class Inky : MonoBehaviour
     // Movement related
     public Transform movePoint;
     public LayerMask whatStopsMovement;
+    public bool canMove = true;
     private Vector2 direction = Vector2.up;
+
+    // Frightened mode related
+    private bool isFrightened = false;
+    private float frightenedTimer = 0f;
+    private bool frightenedBlue = true;
+    private float blinkTimer = 0f;
 
     // Animation related
     private Animator anim;
@@ -26,26 +33,69 @@ public class Inky : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTimers();
         Move();
+    }
+
+    void UpdateTimers()
+    {
+        if (isFrightened)
+        {
+            frightenedTimer -= Time.deltaTime;
+            // Frightened timer is up, so exit frightened mode
+            if (frightenedTimer < 0)
+            {
+                isFrightened = false;
+                anim.SetBool("Frightened_White", false);
+                anim.SetBool("Frightened_Blue", false);
+            }
+            else if (frightenedTimer < 3)
+            {
+                blinkTimer += Time.deltaTime;
+                if (blinkTimer >= 0.1f)
+                {
+                    if (frightenedBlue)
+                    {
+                        anim.SetBool("Frightened_White", true);
+                        anim.SetBool("Frightened_Blue", false);
+                        frightenedBlue = false;
+                    }
+                    else
+                    {
+                        anim.SetBool("Frightened_Blue", true);
+                        anim.SetBool("Frightened_White", false);
+                        frightenedBlue = true;
+                    }
+                    blinkTimer = 0f;
+                }
+            }
+            else
+            {
+                anim.SetBool("Frightened_Blue", true);
+            }
+        }
     }
 
     private void Move()
     {
-        transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, movePoint.position) <= 0.05f)
+        if (canMove)
         {
-            // If no collision between movePoint and grid, move the movePoint to the new location
-            if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction, 0.2f, whatStopsMovement))
+            transform.position = Vector2.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, movePoint.position) <= 0.05f)
             {
-                movePoint.position += (Vector3)direction;
+                // If no collision between movePoint and grid, move the movePoint to the new location
+                if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction, 0.2f, whatStopsMovement))
+                {
+                    movePoint.position += (Vector3)direction;
+                }
+                // Else if no collision if turn around, then turn around
+                else if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction * -1, 0.2f, whatStopsMovement))
+                {
+                    direction *= -1;
+                    movePoint.position += (Vector3)direction;
+                }
+                anim.SetBool("Down", direction.Equals(Vector2.down));
             }
-            // Else if no collision if turn around, then turn around
-            else if (!Physics2D.OverlapCircle(movePoint.position + (Vector3)direction*-1, 0.2f, whatStopsMovement))
-            {
-                direction *= -1;
-                movePoint.position += (Vector3)direction;
-            }
-            anim.SetBool("Down", direction.Equals(Vector2.down));
         }
     }
 
@@ -55,26 +105,22 @@ public class Inky : MonoBehaviour
 
         if (pacman != null)
         {
-            if (pacman.isInvincible)
+            if (isFrightened)
             {
                 // TODO:
-                pacman.IncreaseScore(300);
+                pacman.score += 300;
                 Destroy(gameObject);
             }
             else
             {
-                pacman.Hit();
+                pacman.StartDeath();
             }
         }
     }
-
     public void StartFrightenedMode()
     {
-        anim.SetBool("Frightened", true);
-    }
-
-    public void StopFrightenedMode()
-    {
-        anim.SetBool("Frightened", false);
+        frightenedTimer = timeFrightened;
+        isFrightened = true;
+        frightenedBlue = true;
     }
 }
