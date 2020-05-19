@@ -77,7 +77,7 @@ public class GameSetup : MonoBehaviour
 
     void ConfigureMusic()
     {
-        backgroundMusic.volume = settings.musicVolume;
+        backgroundMusic.volume = Settings.musicVolume;
     }
 
     void ConfigurePacMan()

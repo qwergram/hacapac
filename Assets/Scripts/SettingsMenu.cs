@@ -1,29 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
+
+    public void Start() {
+        
+    }
+
+    public Slider masterVolumeSlider;
+
     // User configurable options: PacMan speed, Ghost speed, Ghost time frightened, Music volume, Sound FX volume
-    public float pacmanMoveSpeed = 6.0f;
-    public float ghostMoveSpeed = 2.0f;
-    public float ghostTimeFrightened = 10.0f;
-    public float musicVolume = 1.0f;
-    public float soundFXVolume = 1.0f;
+    public float pacmanMoveSpeed {
+        get { return Settings.pacmanMoveSpeed; }
+        set { Settings.pacmanMoveSpeed = value; }
+    }
 
-    public AudioMixer audioMixer;
+    public float ghostMoveSpeed {
+        get { return Settings.ghostMoveSpeed; }
+        set { Settings.ghostMoveSpeed = value; }
+    }
 
-    private float _volume;
+    public float ghostTimeFrightened {
+        get { return Settings.ghostTimeFrightened; }
+        set { Settings.ghostTimeFrightened = value; }
+    }
+    
+    public float soundFXVolume {
+        get { return Settings.soundFXVolume * Settings.masterVolume; }
+        set { Settings.soundFXVolume = value; }
+    }
+
+    public float musicVolume {
+        get { return Settings.musicVolume * Settings.masterVolume; }
+        set { Settings.musicVolume = value; }
+    }
+
     public float volume {
-        get { return _volume; }
-        private set { _volume = value; }
+        get { return Settings.masterVolume; }
+        set { Settings.masterVolume = value; }
+    }
+    
+
+    public void SetDefaultVolume ()
+    {
+        masterVolumeSlider.value = Settings.masterVolume;
+        this.volume = Settings.masterVolume;
     }
 
     public void SetVolume (float volume)
     {
         this.volume = volume;
-        audioMixer.SetFloat("MasterVolume", volume);
     }
 
     public void SetMusicVolume (float volume)
