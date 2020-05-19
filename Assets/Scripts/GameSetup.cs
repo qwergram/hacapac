@@ -21,13 +21,10 @@ public class GameSetup : MonoBehaviour
     public AudioClip backgroundMusic_PacManDeath;
     public AudioSource backgroundMusic;
 
-    private SettingsMenu settings;
-
     // Start is called before the first frame update
     void Start()
     {
         BuildLevel();
-        settings = transform.GetComponent<SettingsMenu>();
         ConfigureMusic();
         ConfigurePacMan();
         ConfigureGhosts();
@@ -77,7 +74,7 @@ public class GameSetup : MonoBehaviour
 
     void ConfigureMusic()
     {
-        backgroundMusic.volume = Settings.musicVolume;
+        backgroundMusic.volume = Settings.musicVolume * Settings.masterVolume;
     }
 
     void ConfigurePacMan()
@@ -86,9 +83,9 @@ public class GameSetup : MonoBehaviour
         if(pacmanGameObject != null)
         {
             PacMan pacman = pacmanGameObject.GetComponent<PacMan>();
-            pacman.moveSpeed = settings.pacmanMoveSpeed;
-            pacman.timeInvincible = settings.ghostTimeFrightened;
-            pacman.audio.volume = settings.soundFXVolume;
+            pacman.moveSpeed = Settings.pacmanMoveSpeed;
+            pacman.timeInvincible = Settings.ghostTimeFrightened;
+            pacman.audio.volume = Settings.soundFXVolume;
         }
     }
 
@@ -98,15 +95,15 @@ public class GameSetup : MonoBehaviour
         foreach (GameObject inkyGameObject in inkyGameObjects)
         {
             Inky inky = inkyGameObject.GetComponent<Inky>();
-            inky.moveSpeed = settings.ghostMoveSpeed;
-            inky.timeFrightened = settings.ghostTimeFrightened;
+            inky.moveSpeed = Settings.ghostMoveSpeed;
+            inky.timeFrightened = Settings.ghostTimeFrightened;
         }
         GameObject[] pinkyGameObjects = GameObject.FindGameObjectsWithTag("Pinky");
         foreach (GameObject pinkyGameObject in pinkyGameObjects)
         {
             Pinky pinky = pinkyGameObject.GetComponent<Pinky>();
-            pinky.moveSpeed = settings.ghostMoveSpeed;
-            pinky.timeFrightened = settings.ghostTimeFrightened;
+            pinky.moveSpeed = Settings.ghostMoveSpeed;
+            pinky.timeFrightened = Settings.ghostTimeFrightened;
         }
     }
 
