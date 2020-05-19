@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameSetup : MonoBehaviour
 {
@@ -20,15 +21,112 @@ public class GameSetup : MonoBehaviour
     public AudioClip backgroundMusic_PacManDeath;
     public AudioSource backgroundMusic;
 
+    private SettingsMenu settings;
+
     // Start is called before the first frame update
     void Start()
     {
         BuildLevel();
+        settings = transform.GetComponent<SettingsMenu>();
         ConfigureMusic();
         ConfigurePacMan();
         ConfigureGhosts();
         StartIntro();
     }
+
+    void BuildLevel()
+    {
+        string[] lines = File.ReadAllLines(Application.streamingAssetsPath + "/TestLevel.txt");
+
+        for (int y = 0; y < lines.Length; y++)
+        {
+            char[] line = lines[y].ToCharArray();
+            for (int x = 0; x < line.Length; x++)
+            {
+                Vector3 position = new Vector3(x + 0.5f, lines.Length - 1 - y - 0.5f);
+                switch (line[x])
+                {
+                    case '#':
+                        position = new Vector3(x, lines.Length - 1 - y);
+                        Instantiate(blockGO, position, Quaternion.identity);
+                        break;
+                    case '@':
+                        Instantiate(pacmanGO, position, Quaternion.identity);
+                        break;
+                    case 'B':
+                        Instantiate(blinkyGO, position, Quaternion.identity);
+                        break;
+                    case 'I':
+                        Instantiate(inkyGO, position, Quaternion.identity);
+                        break;
+                    case 'P':
+                        Instantiate(pinkyGO, position, Quaternion.identity);
+                        break;
+                    case 'o':
+                        Instantiate(pelletGO, position, Quaternion.identity);
+                        break;
+                    case 'O':
+                        Instantiate(superpelletGO, position, Quaternion.identity);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    void ConfigureMusic()
+    {
+        backgroundMusic.volume = settings.musicVolume;
+    }
+
+    void ConfigurePacMan()
+    {
+        GameObject pacmanGameObject = GameObject.FindGameObjectWithTag("PacMan");
+        if(pacmanGameObject != null)
+        {
+            PacMan pacman = pacmanGameObject.GetComponent<PacMan>();
+            pacman.moveSpeed = settings.pacmanMoveSpeed;
+            pacman.timeInvincible = settings.ghostTimeFrightened;
+            pacman.audio.volume = settings.soundFXVolume;
+        }
+    }
+
+    void ConfigureGhosts()
+    {
+        GameObject[] inkyGameObjects = GameObject.FindGameObjectsWithTag("Inky");
+        foreach (GameObject inkyGameObject in inkyGameObjects)
+        {
+            Inky inky = inkyGameObject.GetComponent<Inky>();
+            inky.moveSpeed = settings.ghostMoveSpeed;
+            inky.timeFrightened = settings.ghostTimeFrightened;
+        }
+        GameObject[] pinkyGameObjects = GameObject.FindGameObjectsWithTag("Pinky");
+        foreach (GameObject pinkyGameObject in pinkyGameObjects)
+        {
+            Pinky pinky = pinkyGameObject.GetComponent<Pinky>();
+            pinky.moveSpeed = settings.ghostMoveSpeed;
+            pinky.timeFrightened = settings.ghostTimeFrightened;
+        }
+    }
+
+    public void ChangeBGMusic(string music)
+    {
+        if (music.Equals("Frightened"))
+        {
+            backgroundMusic.clip = backgroundMusic_Frightened;
+        }
+        else if (music.Equals("PacManDeath"))
+        {
+            backgroundMusic.clip = backgroundMusic_PacManDeath;
+        }
+        else
+        {
+            backgroundMusic.clip = backgroundMusic_Normal;
+        }
+        backgroundMusic.Play();
+    }
+
     void StartIntro()
     {
         // Hide all Game Objects and play intro
@@ -105,98 +203,5 @@ public class GameSetup : MonoBehaviour
 
         ChangeBGMusic("Normal");
         backgroundMusic.loop = true;
-    }
-
-    void BuildLevel()
-    {
-        string[] lines = File.ReadAllLines("Assets/Levels/TestLevel.txt");
-
-        for(int y = 0; y < lines.Length; y++)
-        {
-            char[] line = lines[y].ToCharArray();
-            for(int x = 0; x < line.Length; x++)
-            {
-                Vector3 position = new Vector3(x + 0.5f, lines.Length - 1 - y - 0.5f);
-                switch (line[x])
-                {
-                    case '#':
-                        position = new Vector3(x, lines.Length - 1 - y);
-                        Instantiate(blockGO, position, Quaternion.identity);
-                        break;
-                    case '@':
-                        Instantiate(pacmanGO, position, Quaternion.identity);
-                        break;
-                    case 'B':
-                        Instantiate(blinkyGO, position, Quaternion.identity);
-                        break;
-                    case 'I':
-                        Instantiate(inkyGO, position, Quaternion.identity);
-                        break;
-                    case 'P':
-                        Instantiate(pinkyGO, position, Quaternion.identity);
-                        break;
-                    case 'o':
-                        Instantiate(pelletGO, position, Quaternion.identity);
-                        break;
-                    case 'O':
-                        Instantiate(superpelletGO, position, Quaternion.identity);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
-    void ConfigureMusic()
-    {
-        backgroundMusic.volume = 1.0f;
-    }
-
-    void ConfigurePacMan()
-    {
-        GameObject pacmanGameObject = GameObject.FindGameObjectWithTag("PacMan");
-        if(pacmanGameObject != null)
-        {
-            PacMan pacman = pacmanGameObject.GetComponent<PacMan>();
-            pacman.moveSpeed = 6.0f;
-            pacman.timeInvincible = 10.0f;
-            pacman.audio.volume = 1.0f;
-        }
-    }
-
-    void ConfigureGhosts()
-    {
-        GameObject[] inkyGameObjects = GameObject.FindGameObjectsWithTag("Inky");
-        foreach (GameObject inkyGameObject in inkyGameObjects)
-        {
-            Inky inky = inkyGameObject.GetComponent<Inky>();
-            inky.moveSpeed = 2.0f;
-            inky.timeFrightened = 10.0f;
-        }
-        GameObject[] pinkyGameObjects = GameObject.FindGameObjectsWithTag("Pinky");
-        foreach (GameObject pinkyGameObject in pinkyGameObjects)
-        {
-            Pinky pinky = pinkyGameObject.GetComponent<Pinky>();
-            pinky.moveSpeed = 2.0f;
-            pinky.timeFrightened = 10.0f;
-        }
-    }
-
-    public void ChangeBGMusic(string music)
-    {
-        if (music.Equals("Frightened"))
-        {
-            backgroundMusic.clip = backgroundMusic_Frightened;
-        }
-        else if (music.Equals("PacManDeath"))
-        {
-            backgroundMusic.clip = backgroundMusic_PacManDeath;
-        }
-        else
-        {
-            backgroundMusic.clip = backgroundMusic_Normal;
-        }
-        backgroundMusic.Play();
     }
 }
