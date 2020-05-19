@@ -25,4 +25,29 @@ public class SettingsMenu : MonoBehaviour
         this.volume = volume;
         audioMixer.SetFloat("MasterVolume", volume);
     }
+
+    public void SetMusicVolume (float volume)
+    {
+        this.musicVolume = volume;
+    }
+
+    public void SetSFXVolume (float volume)
+    {
+        this.soundFXVolume = volume;
+    }
+
+    public void SetPacmanSpeed (float speed)
+    {
+        this.pacmanMoveSpeed = speed;
+    }
+
+    public void SetGhostSpeed (float speed)
+    {
+        this.ghostMoveSpeed = speed;
+    }
+
+    public void SetGhostFrightened (float time)
+    {
+        this.ghostTimeFrightened = time;
+    }
 }
