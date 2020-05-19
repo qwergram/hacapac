@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 110618619}
   - component: {fileID: 110618620}
   m_Layer: 5
-  m_Name: VolumeSetting
+  m_Name: MusicVolumeSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2930,7 +2930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883705d15e0ed354f8bd882971abab78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pacmanMoveSpeedSlider: {fileID: 1909453997}
+  ghostMoveSpeedSlider: {fileID: 201211137}
+  ghostFrightenedTimeSlider: {fileID: 93569201}
   masterVolumeSlider: {fileID: 1883848083}
+  soundFXVolumeSlider: {fileID: 1762333931}
+  musicVolumeSlider: {fileID: 110618620}
 --- !u!1 &411469335
 GameObject:
   m_ObjectHideFlags: 0
@@ -9511,7 +9516,7 @@ GameObject:
   - component: {fileID: 1762333930}
   - component: {fileID: 1762333931}
   m_Layer: 5
-  m_Name: VolumeSetting (1)
+  m_Name: SoundFXVolumeSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

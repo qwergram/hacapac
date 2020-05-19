@@ -8,10 +8,20 @@ public class SettingsMenu : MonoBehaviour
 {
 
     public void Start() {
-        
+        pacmanMoveSpeedSlider.value = pacmanMoveSpeed;
+        ghostMoveSpeedSlider.value = ghostMoveSpeed;
+        ghostFrightenedTimeSlider.value = ghostTimeFrightened;
+        masterVolumeSlider.value = volume;
+        soundFXVolumeSlider.value = soundFXVolume;
+        musicVolumeSlider.value = musicVolume;
     }
 
+    public Slider pacmanMoveSpeedSlider;
+    public Slider ghostMoveSpeedSlider;
+    public Slider ghostFrightenedTimeSlider;
     public Slider masterVolumeSlider;
+    public Slider soundFXVolumeSlider;
+    public Slider musicVolumeSlider;
 
     // User configurable options: PacMan speed, Ghost speed, Ghost time frightened, Music volume, Sound FX volume
     public float pacmanMoveSpeed {
@@ -28,27 +38,20 @@ public class SettingsMenu : MonoBehaviour
         get { return Settings.ghostTimeFrightened; }
         set { Settings.ghostTimeFrightened = value; }
     }
-    
+    public float volume
+    {
+        get { return Settings.masterVolume; }
+        set { Settings.masterVolume = value; }
+    }
+
     public float soundFXVolume {
-        get { return Settings.soundFXVolume * Settings.masterVolume; }
+        get { return Settings.soundFXVolume; }
         set { Settings.soundFXVolume = value; }
     }
 
     public float musicVolume {
-        get { return Settings.musicVolume * Settings.masterVolume; }
+        get { return Settings.musicVolume; }
         set { Settings.musicVolume = value; }
-    }
-
-    public float volume {
-        get { return Settings.masterVolume; }
-        set { Settings.masterVolume = value; }
-    }
-    
-
-    public void SetDefaultVolume ()
-    {
-        masterVolumeSlider.value = Settings.masterVolume;
-        this.volume = Settings.masterVolume;
     }
 
     public void SetVolume (float volume)
