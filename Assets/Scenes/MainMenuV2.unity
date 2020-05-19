@@ -3070,7 +3070,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883705d15e0ed354f8bd882971abab78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pacmanMoveSpeedSlider: {fileID: 0}
+  ghostMoveSpeedSlider: {fileID: 0}
+  ghostFrightenedTimeSlider: {fileID: 0}
   masterVolumeSlider: {fileID: 1883848083}
+  soundFXVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
 --- !u!1 &411469335
 GameObject:
   m_ObjectHideFlags: 0
@@ -4168,7 +4173,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 481990094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 150110185}
+        m_MethodName: EditGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &481990094
 MonoBehaviour:
   m_ObjectHideFlags: 0
