@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: pellet_energizer
+  m_Name: editor_blinky
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 5d710b0d5ad05d7438f54fe4a49bd9a6, type: 3}
+  m_Sprite: {fileID: -7573706196041135565, guid: 4680c307da93f4792aba50348ddbfbb3,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

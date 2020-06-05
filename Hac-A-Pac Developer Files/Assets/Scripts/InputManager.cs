@@ -14,8 +14,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
 
-    [SerializeField]
-    private KeyBindings keyBindings;
+    public KeyBindings keyBindings;
 
     public void Awake()
     {

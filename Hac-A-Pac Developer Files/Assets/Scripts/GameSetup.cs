@@ -33,7 +33,7 @@ public class GameSetup : MonoBehaviour
 
     void BuildLevel()
     {
-        string[] lines = File.ReadAllLines(Application.streamingAssetsPath + "/TestLevel.txt");
+        string[] lines = File.ReadAllLines(Application.streamingAssetsPath + "/CustomLevel.txt");
 
         for (int y = 0; y < lines.Length; y++)
         {
