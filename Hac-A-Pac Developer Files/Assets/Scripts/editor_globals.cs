@@ -81,21 +81,9 @@ public class editor_globals : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) {
 
             Vector3Int cellPos = tilemap.WorldToCell(getCursorPos());
-            tilemap.SetTile(cellPos, selectedTile);
-
-            // for (int n = tilemap.cellBounds.xMin; n < tilemap.cellBounds.xMax; n++)
-            // {
-            //     for (int p = tilemap.cellBounds.yMin; p < tilemap.cellBounds.yMax; p++)
-            //     {
-            //         Vector3Int localPlace = (new Vector3Int(n, p, (int)tilemap.transform.position.y));
-            //         Vector3 place = tilemap.CellToWorld(localPlace);
-            //         // Debug.Log(place);
-            //         // if (tilemap.HasTile(localPlace))
-            //         // {
-                        
-            //         // }
-            //     }
-            // }
+            if (cellPos.x >= -9 & cellPos.x <= 19 & cellPos.y >= -5 & cellPos.y <= 27){
+                tilemap.SetTile(cellPos, selectedTile);
+            }
         }
     }
 
