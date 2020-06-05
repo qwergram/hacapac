@@ -91,6 +91,12 @@ public class GameSetup : MonoBehaviour
 
     void ConfigureGhosts()
     {
+        GameObject[] blinkyGameObjects = GameObject.FindGameObjectsWithTag("Blinky");
+        foreach (GameObject blinkyGameObject in blinkyGameObjects)
+        {
+            Blinky blinky = blinkyGameObject.GetComponent<Blinky>();
+            blinky.timeFrightened = Settings.ghostTimeFrightened;
+        }
         GameObject[] inkyGameObjects = GameObject.FindGameObjectsWithTag("Inky");
         foreach (GameObject inkyGameObject in inkyGameObjects)
         {
