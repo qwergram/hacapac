@@ -4,7 +4,7 @@ Built on Unity3D 2019.3.9f1
 
 Created by Norton Pengra, Patrick Sharp & Richard Tian of UW CSE 482. With special thanks to Igal, who provided us with invaluable feedback.
 
-- [**User Manual**](https://docs.google.com/document/d/1zDTbg5PcCROHcEyc_votvqFmoEFckwvYZf_-_05T2_M/edit?usp=sharing)
+[**User Manual**](https://docs.google.com/document/d/1zDTbg5PcCROHcEyc_votvqFmoEFckwvYZf_-_05T2_M/edit?usp=sharing)
 
 ![](https://i.imgur.com/ar4Bcm9.png)
 
