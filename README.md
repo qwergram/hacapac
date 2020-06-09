@@ -135,17 +135,18 @@ In addition, Testing identified the following issues to solve. In this section, 
   - No visual feedback on which button was pressed
   - One user suggested that it should be clearer on screen when a button is pressed, to add additional feedback and information about the character’s movement on screen.
 
-Unfortunately, due to time constraints, we created a Github Issue for each issue, but were unable to provide any meaningful fixes for  some of the issues due to time constraints. We did however, provide the following fixes and features:
-
+After identifying the issues above, we managed to fix many of the issues and add additional features outlined below:
 - Play Menu:
   - Added a shortcut button to the editor menu
   - Added a restart level button
 - Editor Menu:
-  - Editor saves the edited level to a file
-  - Editor loads the edited level to make further edits
+  - Added save functionality when level editing is done
+  - Added load functionality when further edits are wanted to be made to a level
   - Added a shortcut button to the play menu
   - Sprites properly clip to the right slots
-
+  - Drag and drop implemented for wall, pellet and erase blocks
+  
+We also created GitHub Issues for each issue we were unable to currently address.
 
 ## Conclusion + Future Directions
 
